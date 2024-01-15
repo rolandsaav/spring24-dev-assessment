@@ -1,5 +1,5 @@
 .App {
-  height: 100%;
+  height: 100vh;
   background-color: #f7faff;
 }
 
@@ -187,5 +187,13 @@ tr:nth-of-type(2n) {
   align-items: center;
   justify-content: end;
   right: 0px;
+  gap: 1rem;
+}
+
+.pagination-wrapper {
+  padding-top: 1rem;
+  display: flex;
+  width: 100%;
+  justify-content: end;
   gap: 1rem;
 }

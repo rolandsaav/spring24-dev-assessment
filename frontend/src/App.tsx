@@ -16,6 +16,22 @@ function App() {
   const [createFormVisible, setCreateFormVisible] = useState<boolean>(false);
   const [editFormVisible, setEditFormVisible] = useState<boolean>(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [page, setPage] = useState<number>(1);
+
+  const nextPage = () => {
+    const nextPage = page < Math.ceil(users.length / 10) ? page + 1 : page;
+    setPage(nextPage);
+  };
+
+  const lastPage = () => {
+    const lastPage = page > 1 ? page - 1 : 1;
+    setPage(lastPage);
+  };
+
+  const visibleUsers = () => {
+    const startIndex = (page - 1) * 10;
+    return users.slice(startIndex, startIndex + 10);
+  };
   useEffect(() => {
     const fetchData = async () => {
       const response = await axio.get("/api/bog/users");
@@ -109,17 +125,25 @@ function App() {
         )}
         {width >= 800 ? (
           <UserTable
-            users={users}
+            users={visibleUsers()}
             deleteUser={deleteUser}
             setSelectedUser={selectUser}
           />
         ) : (
           <UserList
-            users={users}
+            users={visibleUsers()}
             deleteUser={deleteUser}
             selectUser={selectUser}
           />
         )}
+        <div className="pagination-wrapper">
+          <button className="btn" onClick={lastPage}>
+            Previous
+          </button>
+          <button className="btn" onClick={nextPage}>
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
