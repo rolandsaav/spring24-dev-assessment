@@ -4,6 +4,8 @@
 }
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
   margin: auto;
   width: min(1500px, 100% - 1rem);
 }
@@ -26,6 +28,10 @@ th,
 td {
   padding: 0 1rem;
   text-align: left;
+}
+
+tr {
+  position: relative;
 }
 
 tr:nth-of-type(2n) {
@@ -98,5 +104,72 @@ tr:nth-of-type(2n) {
   font-size: 14px;
 }
 
-.user-card-email {
+.btn-add {
+  margin-left: auto;
+}
+
+.btn {
+  height: 32px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  background-color: #7cb9e8;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.btn-add:active {
+  background-color: #4287f5;
+}
+
+.create-user-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+}
+
+.create-user-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-user-row {
+  margin-bottom: 1rem;
+}
+
+.create-user-row-label {
+  font-weight: 600;
+}
+
+.create-user-row-input {
+  width: 100%;
+  padding: 5px;
+}
+
+.create-user-row-inline {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.create-user-row-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-container {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  right: 0px;
+  gap: 1rem;
 }

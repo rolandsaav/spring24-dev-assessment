@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import { User } from "./types/User";
-import Row from "./components/Row";
 import UserTable from "./components/UserTable";
 import UserList from "./components/UserList";
+import CreateUserForm from "./components/CreateUserForm";
+import EditUserForm from "./components/EditUserForm";
 
 const axio = axios.create({
   baseURL: "http://localhost:8000",
@@ -12,6 +13,9 @@ const axio = axios.create({
 function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [width, setWidth] = useState<number>(0);
+  const [createFormVisible, setCreateFormVisible] = useState<boolean>(false);
+  const [editFormVisible, setEditFormVisible] = useState<boolean>(false);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
   useEffect(() => {
     const fetchData = async () => {
       const response = await axio.get("/api/bog/users");
@@ -31,12 +35,69 @@ function App() {
       window.removeEventListener("resize", updateWidth);
     };
   }, []);
+
+  const selectUser = (user: User) => {
+    setSelectedUser(user);
+    setEditFormVisible(true);
+  };
+
+  const addUser = (user: User) => {
+    let newUser = user;
+    newUser.id = `${users.length + 1}`;
+    setUsers([...users, newUser]);
+  };
+
+  const editUser = (user: User) => {
+    console.log(user);
+    setUsers(
+      users.map((u) => {
+        if (u.id === user.id) {
+          console.log("updating");
+          return user;
+        } else {
+          return u;
+        }
+      }),
+    );
+  };
+
   return (
     <div className="App">
       <div className="wrapper">
         <h1>Volunteers</h1>
+
+        {editFormVisible && (
+          <EditUserForm
+            closeDialog={() => {
+              setEditFormVisible(false);
+              setCreateFormVisible(false);
+            }}
+            updateUser={editUser}
+            user={selectedUser as User}
+          />
+        )}
+        {createFormVisible && (
+          <CreateUserForm
+            closeDialog={() => {
+              setEditFormVisible(false);
+              setCreateFormVisible(false);
+            }}
+            addUser={addUser}
+          />
+        )}
+        {!createFormVisible && (
+          <button
+            className="btn btn-add"
+            onClick={() => {
+              setCreateFormVisible(true);
+              setEditFormVisible(false);
+            }}
+          >
+            Add Volunteer
+          </button>
+        )}
         {width >= 800 ? (
-          <UserTable users={users} />
+          <UserTable users={users} setSelectedUser={selectUser} />
         ) : (
           <UserList users={users} />
         )}
