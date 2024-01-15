@@ -41,21 +41,23 @@ function App() {
     setEditFormVisible(true);
   };
 
-  const deleteUser = (user: User) => {
+  const deleteUser = async (user: User) => {
     setUsers(
       users.filter((u) => {
         return u.id !== user.id;
       }),
     );
+    await axio.delete(`/api/bog/users/${user.id}`);
   };
 
   const addUser = (user: User) => {
     let newUser = user;
     newUser.id = `${users.length + 1}`;
     setUsers([...users, newUser]);
+    axio.post("/api/bog/users", { user: newUser });
   };
 
-  const editUser = (user: User) => {
+  const editUser = async (user: User) => {
     setUsers(
       users.map((u) => {
         if (u.id === user.id) {
@@ -66,6 +68,9 @@ function App() {
         }
       }),
     );
+    await axio.put(`/api/bog/users/${user.id}`, {
+      user: user,
+    });
   };
 
   return (
