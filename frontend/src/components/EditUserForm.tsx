@@ -96,8 +96,7 @@ function EditUserForm(props: {
           <input
             type="checkbox"
             checked={!!status}
-            onChange={(e) => {
-              console.log(status);
+            onChange={() => {
               setStatus(!status);
             }}
           />

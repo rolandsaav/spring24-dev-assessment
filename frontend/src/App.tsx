@@ -61,7 +61,6 @@ function App() {
     setUsers(
       users.map((u) => {
         if (u.id === user.id) {
-          console.log("updating");
           return user;
         } else {
           return u;
@@ -115,7 +114,11 @@ function App() {
             setSelectedUser={selectUser}
           />
         ) : (
-          <UserList users={users} />
+          <UserList
+            users={users}
+            deleteUser={deleteUser}
+            selectUser={selectUser}
+          />
         )}
       </div>
     </div>

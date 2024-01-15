@@ -52,6 +52,22 @@ tr:nth-of-type(2n) {
   width: 100%;
   display: flex;
   justify-content: start;
+  cursor: pointer;
+  position: relative;
+}
+
+.card-buttons {
+  position: absolute;
+  width: 150px;
+  right: -150px;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-card-active {
+  left: -150px;
 }
 
 .user-card-img {

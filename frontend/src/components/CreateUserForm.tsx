@@ -93,7 +93,6 @@ function CreateUserForm(props: { closeDialog: any; addUser: any }) {
             type="checkbox"
             checked={!!status}
             onChange={(e) => {
-              console.log(status);
               setStatus(!status);
             }}
           />
