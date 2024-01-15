@@ -41,6 +41,14 @@ function App() {
     setEditFormVisible(true);
   };
 
+  const deleteUser = (user: User) => {
+    setUsers(
+      users.filter((u) => {
+        return u.id !== user.id;
+      }),
+    );
+  };
+
   const addUser = (user: User) => {
     let newUser = user;
     newUser.id = `${users.length + 1}`;
@@ -48,7 +56,6 @@ function App() {
   };
 
   const editUser = (user: User) => {
-    console.log(user);
     setUsers(
       users.map((u) => {
         if (u.id === user.id) {
@@ -97,7 +104,11 @@ function App() {
           </button>
         )}
         {width >= 800 ? (
-          <UserTable users={users} setSelectedUser={selectUser} />
+          <UserTable
+            users={users}
+            deleteUser={deleteUser}
+            setSelectedUser={selectUser}
+          />
         ) : (
           <UserList users={users} />
         )}

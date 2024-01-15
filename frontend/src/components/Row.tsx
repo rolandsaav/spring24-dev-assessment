@@ -2,7 +2,7 @@ import { User } from "../types/User";
 import "../App.css";
 import { useState } from "react";
 
-const Row = (props: { user: User; setSelectedUser: any }) => {
+const Row = (props: { user: User; setSelectedUser: any; deleteUser: any }) => {
   const tooltip = props.user.status === false ? "disabled" : "enabled";
   const [btnVisible, setBtnVisible] = useState<boolean>(false);
   const scrollToTop = () => {
@@ -36,7 +36,9 @@ const Row = (props: { user: User; setSelectedUser: any }) => {
           <div className="btn" onClick={editUser}>
             Edit
           </div>
-          <div className="btn">Delete</div>
+          <div className="btn" onClick={() => props.deleteUser(props.user)}>
+            Delete
+          </div>
         </td>
       )}
     </tr>
