@@ -1,3 +1,6 @@
+# Please Read
+I completed the first 2 levels completely and started the third. I did the pagination and stopped because I didn't want to take the time to figure out switching to NextJS or figure out ReactRouter (again). I'm familiar with both, but I think what I've done is demonstration enough. Regarding the items left in levels three and four, I have done all of them on other projects, except for WebWorkers. 
+
 # Introduction 
 Hello, thank you for showing your interest in Bits of Good! This semester, we are focusing our recruitment on the practical skills of developers through this assessment! We hope you enjoy the task and if you have any questions or if any part is ambiguous, please send us an email at gt.engineering@hack4impact.org or file an issue on GitHub.
 
